@@ -13,6 +13,4 @@ tasks {
         gradleVersion = "8.5"
     }
 }
-dependencies {
-    implementation(kotlin("script-runtime"))
-}
+dependencies { implementation(kotlin("script-runtime")) }
