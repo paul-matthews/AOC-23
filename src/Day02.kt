@@ -25,6 +25,7 @@ data class Game(val id: Int = -1, val blue: Int = 0, val red: Int = 0, val green
     fun maxOfGreen(v: Int) = copy(green = maxOf(green, v))
 
     fun isPossible(bag: Game): Boolean = (red <= bag.red && green <= bag.green && blue <= bag.blue)
+    fun power(): Int = red * green * blue
 }
 
 fun main() {
@@ -34,13 +35,24 @@ fun main() {
         .filter { it.isPossible(bag) }
         .sumOf { it.id }
 
+    fun Lines.part2() =
+        map {it.toGame()}.sumOf { it.power() }
+
     // test if implementation meets criteria from the description, like:
-    readInput("${day}_test_p1")
+    readInput("${day}_test")
         .part1(Game(red = 12, green = 13, blue = 14))
         .check(8)
 
-    // test if implementation meets criteria from the description, like:
+    readInput("${day}_test")
+        .part2()
+        .check(2286)
+
+    // Calculate the real output
     readInput(day)
         .part1(Game(red = 12, green = 13, blue = 14))
         .println("Part 1: ")
+
+    readInput(day)
+        .part2()
+        .println("Part 2: ")
 }
